@@ -24,9 +24,10 @@ public class GraphExplorerPage {
 
     private static final String[] CHECKBOX_USER_POSTS_PERMISSION_TEXT = new String[]{
             "user_posts", "user_photos", "user_likes", "user_location",
-            // "user_religion_politics",
-            "user_status", "user_tagged_places", "user_videos", "user_relationship_details", "user_relationships",
-            "user_friends", "user_education_history", "user_about_me"
+            // "user_religion_politics", "user_education_history", "user_about_me"
+            "user_status", "user_tagged_places", "user_videos",
+            // "user_relationship_details", "user_relationships",
+            "user_friends"
     };
 
     private WebDriver webDriver;

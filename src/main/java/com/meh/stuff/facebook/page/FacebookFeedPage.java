@@ -18,6 +18,7 @@ public class FacebookFeedPage {
 
     private static final String FEED_OPTION_ATTRIBUTE_NAME = "data-feed-option-name";
     private static final String FEED_DELETE_ATTRIBUTE_VALUE = "FeedDeleteOption";
+    private static final String FEED_SAVE_ATTRIBUTE_VALUE = "FeedSaveOption";
     private static final String FEED_MORE_ATTRIBUTE_VALUE = "additionalMoreOptionsExpander";
 
     private WebDriver webDriver;
@@ -46,18 +47,37 @@ public class FacebookFeedPage {
                 "[" + FEED_OPTION_ATTRIBUTE_NAME + "='" + FEED_MORE_ATTRIBUTE_VALUE + "']");
     }
 
+    private By bySaveButtonSelector() {
+        return By.cssSelector(
+                "a" +
+                        "[" + FEED_OPTION_ATTRIBUTE_NAME + "='" + FEED_SAVE_ATTRIBUTE_VALUE + "']");
+    }
+
     public void performDeleteFeedAction() {
         Actions action = new Actions(webDriver);
-        WebElement optionButton = wait.until(ExpectedConditions.visibilityOfElementLocated(byOptionButtonSelector()));
+        WebElement optionButton = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(byOptionButtonSelector()));
         action.moveToElement(optionButton);
         optionButton.click();
 
-        WebElement moreButton = wait.until(ExpectedConditions.visibilityOfElementLocated(byMoreButtonSelector()));
-        action.moveToElement(moreButton);
-        moreButton.click();
+        WebElement uiContextualLayer = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(bySaveButtonSelector()));
 
-        WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(byDeleteButtonSelector()));
-        action.moveToElement(deleteButton);
-        deleteButton.click();
+        if (uiContextualLayer.isDisplayed()) {
+            WebElement deleteButton = webDriver.findElement(byDeleteButtonSelector());
+            if (!deleteButton.isDisplayed()) {
+                // delete button is not displayed, look for the more option
+                WebElement moreButton = wait.until(
+                        ExpectedConditions.visibilityOfElementLocated(byMoreButtonSelector()));
+                action.moveToElement(moreButton);
+                moreButton.click();
+
+                // wait until you see the delete button
+                deleteButton = wait.until(
+                        ExpectedConditions.visibilityOfElementLocated(byDeleteButtonSelector()));
+            }
+            action.moveToElement(deleteButton);
+            deleteButton.click();
+        }
     }
 }
