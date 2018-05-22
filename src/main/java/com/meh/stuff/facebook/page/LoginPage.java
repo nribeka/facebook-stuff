@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 /*
  * Perform login everywhere there is a facebook login page.
  */
-public class FacebookLoginPage {
+public class LoginPage {
 
     public static final String EMAIL_INPUT_ID = "email";
     private static final String PASSWORD_INPUT_ID = "pass";
@@ -15,7 +15,7 @@ public class FacebookLoginPage {
 
     private WebDriver webDriver;
 
-    public FacebookLoginPage(final WebDriver webDriver) {
+    public LoginPage(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
