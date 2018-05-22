@@ -89,9 +89,7 @@ public class Application {
                     feedParameter.isAutoDelete());
 
             FeedCleaner feedCleaner = new FeedCleaner(feedParameter);
-            // char[] password = console.readPassword("%s", "Password: ");
-            // feedCleaner.deleteAndBackupFeed("Your-Username", "Your-Password");
-            // Arrays.fill(password, ' ');
+            feedCleaner.clean("Your Username", "Your Password");
         } catch (Exception e) {
             log.error("Unable to clean your account.", e);
         }
