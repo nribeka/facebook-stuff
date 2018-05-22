@@ -30,6 +30,12 @@ public class Application {
             AppParameter appParameter = new AppParameter();
             appParameter.loadFromProperties(properties);
 
+            if (appParameter.getClientId() == null || appParameter.getClientSecret() == null
+                    || appParameter.getClientId().isEmpty() || appParameter.getClientSecret().isEmpty()) {
+                System.out.println("You need to set the client id and client secret in the property file.");
+                System.exit(0);
+            }
+
             FeedParameter feedParameter = new FeedParameter();
             feedParameter.loadFromProperties(properties);
 

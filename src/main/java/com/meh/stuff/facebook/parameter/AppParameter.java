@@ -24,6 +24,6 @@ public class AppParameter {
 
     public void loadFromProperties(Properties properties) {
         setClientId(properties.getProperty("app.clientId"));
-        setClientId(properties.getProperty("app.clientSecret"));
+        setClientSecret(properties.getProperty("app.clientSecret"));
     }
 }
