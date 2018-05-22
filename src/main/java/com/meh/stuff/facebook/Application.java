@@ -25,7 +25,7 @@ public class Application {
             String takeScreenshot = readAnswer(scanner);
             feedParameter.setTakeScreenshot(takeScreenshot.equals("Y"));
             if (takeScreenshot.equals("Y")) {
-                System.out.println("Your screenshot will be saved under screenshot folder.");
+                System.out.println("Your screenshot will be saved under 'screenshot' folder.");
             }
 
             if (reviewing.equals("n")) {
@@ -48,15 +48,15 @@ public class Application {
                 String manualDelete = readAnswer(scanner);
                 feedParameter.setAutoDelete(manualDelete.equals("n"));
 
-                System.out.print("Do you want to keep any of posts? (Y/n): ");
+                System.out.print("Do you want to keep any of your public posts? (Y/n): ");
                 String keepAny = readAnswer(scanner);
                 if (keepAny.equals("n")) {
                     feedParameter.setKeepCount(0);
                 } else {
-                    System.out.print("Do you want to keep by number of posts? (Y/n): ");
+                    System.out.print("Do you want to keep by number of public posts? (Y/n): ");
                     String keepByNumber = readAnswer(scanner);
                     if (keepByNumber.equals("Y")) {
-                        System.out.print("How many post do you want to keep? (1 - 1000): ");
+                        System.out.print("How many posts do you want to keep? (1 - 1000): ");
                         int keepCount = scanner.nextInt();
                         feedParameter.setKeepCount(keepCount);
                     } else {
