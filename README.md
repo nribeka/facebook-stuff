@@ -49,3 +49,24 @@ you're given 2 options:
 
   You will be prompted to enter the date of the last post you want to keep.
   Post older than this cutoff date will be deleted.
+
+
+### Username and password
+In order to access all of your public posts, the application will be
+utilizing the token from the graph explorer and feed them to facebook4j
+library.
+
+And in order to get the token from graph explorer, you will need to enter your
+username and password either in the code (if you're comfortable with it) or
+during the authentication process to graph explorer.
+
+Enter your credentials when you see the following log message:
+
+```[main] INFO  FeedCleaner - Email input element found, displayed: true.```
+
+This means the application was able to reach graph explorer and get to the
+login screen. Enter your username and password there and then press the
+submit button. After that, the application will take over again and automate
+the rest of the process.
+
+This application will not send or store your information anywhere.

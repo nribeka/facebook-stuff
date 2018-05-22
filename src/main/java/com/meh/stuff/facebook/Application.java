@@ -92,7 +92,7 @@ public class Application {
                     feedParameter.isAutoDelete());
 
             FeedCleaner feedCleaner = new FeedCleaner(feedParameter);
-            feedCleaner.clean("Your Username", "Your Password");
+            feedCleaner.clean("Enter your username", null);
         } catch (Exception e) {
             log.error("Unable to clean your account.", e);
         }
