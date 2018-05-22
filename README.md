@@ -1,5 +1,16 @@
 ## Facebook Cleaner
 
+#### Prerequisite
+You need to get facebook client secret and client id in order to use this
+application. If you don't have one, I might be able to help you set the values.
+Hit me with an email.
+ 
+If you already have one, you can put it in the `cleaner.properties` file if
+you're planning to run it from the repo directly. Or create a new
+`cleaner-user.properties` properties file and put it in the same directory as
+the `facebook-stuff-xxx-with-dependencies.jar` file. The values from this
+properties file will override the default values in `cleaner.properties` file. 
+
 #### Building the project
 The project is just your typical maven project.
 
@@ -25,7 +36,71 @@ To run the application from the packaged jar file:
 PS: Make sure you have the chromedriver executable inside "chromedriver"
 directory in the same directory with the jar file.
 
-### Application parameter 
+### Application parameter
+
+Default parameter of the application will make the application run in
+reviewing mode. All of the parameters are exposed through properties or
+through the interactive mode.
+
+* _delay.betweenPost_ (true | false)
+
+  Whether the application should put a pause between posts. Loading a public
+  post can be fast (depending on internet speed). Setting this flag to true
+  will ensure that the application will stop processing and allowing user to
+  interact with the public post. You could check number of likes, check the
+  comments section.
+  
+  **PS:** If you're on delete mode, make sure you don't touch the top right
+  contextual menu because this application is using that context menu to delete
+  the public post. 
+   
+* _delay.betweenPostInSecond_ (1 - 1000)
+
+  Delay between post in **seconds**. Adding longer delay will make processing
+  all of your public posts slower (obviously). 
+  
+* _mode.reviewing_ (true | false)
+  
+  Flag to determine whether the application should just go through your public
+  posts or attempt to delete them.
+
+* _keep.count_ (1 - 1000)
+
+  Number of public posts to skip until start performing deletion on the public
+  posts. The first X will be running in review mode, the rest will run in delete
+  mode.
+
+* _keep.since_ (dd/mm/yyy, e.g. 01/01/2018)
+
+  Last posted date of the public posts that will be skipped by the delete mode.
+
+* _autoDelete_ (true | false)
+
+  Flag to determine whether the user will perform the delete or the application
+  will automate that for the user.
+
+* _takeScreenshot_ (true | false)
+
+  Flag to determine whether the application should take a screenshot of the
+  public post. This flag works for both review and delete mode.
+
+* _skipInteractive_ (true | false)
+
+  Flag to skip the interactive mode and use values from the properties file.
+
+* _app.clientId_
+  
+  Client id for facebook developer. This is needed by facebook4j to pull the
+  user's public posts data.
+  
+  **PS:** Hit me with an email if you need this properties.
+  
+* _app.clientSecret_
+  
+  Client secret for facebook developer. This is needed by facebook4j to pull the
+  user's public posts data.
+  
+  **PS:** Hit me with an email if you need this properties.
 
 #### Reviewing mode
 
