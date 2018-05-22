@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.Scanner;
@@ -20,7 +21,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             Properties properties = new Properties();
-            properties.load(Application.class.getClassLoader().getResourceAsStream("cleaner.properties"));
+            properties.load(Application
+                    .class
+                    .getClassLoader()
+                    .getResourceAsStream("cleaner.properties"));
+
+            InputStream cleanerLocalProperties = Application
+                    .class
+                    .getClassLoader()
+                    .getResourceAsStream("cleaner-local.properties");
+            if (cleanerLocalProperties != null) {
+                properties.load(cleanerLocalProperties);
+            }
 
             File userProperties = new File("cleaner-user.properties");
             if (userProperties.exists()) {
