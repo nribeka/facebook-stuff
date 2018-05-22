@@ -2,3 +2,5 @@ target
 
 .idea
 *.iml
+
+cleaner-local.properties
