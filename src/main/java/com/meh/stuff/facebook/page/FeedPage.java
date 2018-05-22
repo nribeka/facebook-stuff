@@ -1,11 +1,18 @@
 package com.meh.stuff.facebook.page;
 
+import com.meh.stuff.facebook.util.Utils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+
+import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /*
  * Representation of one facebook feed page. Delete feed method will click on the more option menu,
@@ -127,5 +134,12 @@ public class FeedPage {
         }
 
         return false;
+    }
+
+    public void takeScreenshot(String baseFilename) {
+        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        File outputFile = new File("screenshot", baseFilename + "-" + currentDate + ".jpg");
+        File screenshotFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+        Utils.copyFile(screenshotFile, outputFile);
     }
 }

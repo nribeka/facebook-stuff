@@ -7,6 +7,7 @@ public class FeedParameter {
     private Date keepSince;
     private boolean reviewing;
     private boolean autoDelete;
+    private boolean takeScreenshot;
 
     public FeedParameter() {
         // Default to keep only last entry in the feed;
@@ -45,5 +46,13 @@ public class FeedParameter {
 
     public void setAutoDelete(boolean autoDelete) {
         this.autoDelete = autoDelete;
+    }
+
+    public boolean isTakeScreenshot() {
+        return takeScreenshot;
+    }
+
+    public void setTakeScreenshot(boolean takeScreenshot) {
+        this.takeScreenshot = takeScreenshot;
     }
 }
