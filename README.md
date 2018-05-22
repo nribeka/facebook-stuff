@@ -10,6 +10,9 @@ dependencies which can be distributed and executed run using:
 
 ```java -jar facebook-stuff-xxx-with-dependencies.jar```
 
+PS: Make sure you have the chromedriver executable inside "chromedriver"
+directory in the same directory with the jar file. 
+
 #### Running the application
 To run the application from the project:
 
@@ -18,6 +21,9 @@ To run the application from the project:
 To run the application from the packaged jar file:
 
 ```java -jar facebook-stuff-xxx-with-dependencies.jar```
+
+PS: Make sure you have the chromedriver executable inside "chromedriver"
+directory in the same directory with the jar file.
 
 ### Application parameter 
 
