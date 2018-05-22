@@ -59,6 +59,14 @@ public class Utils {
         }
     }
 
+    public static void sleepSilently(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (Exception e) {
+            // just silently ignore the exception.
+        }
+    }
+
     private static void closeQuietly(final Closeable closeable) {
         try {
             if (closeable != null) {
