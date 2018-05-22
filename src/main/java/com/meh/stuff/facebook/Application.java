@@ -1,5 +1,6 @@
 package com.meh.stuff.facebook;
 
+import com.meh.stuff.facebook.parameter.AppParameter;
 import com.meh.stuff.facebook.parameter.FeedParameter;
 import com.meh.stuff.facebook.selenium.FeedCleaner;
 import org.slf4j.Logger;
@@ -26,8 +27,12 @@ public class Application {
                 properties.load(new FileInputStream(userProperties));
             }
 
+            AppParameter appParameter = new AppParameter();
+            appParameter.loadFromProperties(properties);
+
             FeedParameter feedParameter = new FeedParameter();
             feedParameter.loadFromProperties(properties);
+
             if (!"true".equalsIgnoreCase(properties.getProperty("skipInteractive"))) {
 
                 Scanner scanner = new Scanner(System.in).useDelimiter("\\s");
@@ -91,7 +96,7 @@ public class Application {
                     feedParameter.getKeepCount(), feedParameter.getKeepSince(), feedParameter.isReviewing(),
                     feedParameter.isAutoDelete());
 
-            FeedCleaner feedCleaner = new FeedCleaner(feedParameter);
+            FeedCleaner feedCleaner = new FeedCleaner(appParameter, feedParameter);
             feedCleaner.clean("Enter your username", null);
         } catch (Exception e) {
             log.error("Unable to clean your account.", e);
