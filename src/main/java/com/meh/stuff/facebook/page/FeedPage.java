@@ -14,6 +14,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static com.meh.stuff.facebook.util.Utils.SCREENSHOT_PARENT_DIRECTORY;
+
 /*
  * Representation of one facebook feed page. Delete feed method will click on the more option menu,
  * find the delete button and click on it. This page can only be invoked in a single feed page.
@@ -138,7 +140,7 @@ public class FeedPage {
 
     public void takeScreenshot(String baseFilename) {
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        File outputFile = new File("screenshot", baseFilename + "-" + currentDate + ".jpg");
+        File outputFile = new File(SCREENSHOT_PARENT_DIRECTORY, baseFilename + "-" + currentDate + ".jpg");
         File screenshotFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
         Utils.copyFile(screenshotFile, outputFile);
     }

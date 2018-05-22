@@ -14,6 +14,8 @@ public class Utils {
 
     private static final Logger log = LoggerFactory.getLogger(Utils.class.getSimpleName());
 
+    public static final File SCREENSHOT_PARENT_DIRECTORY = new File("screenshot");
+
     private Utils() {
         // private constructor for utility class
     }
@@ -36,7 +38,7 @@ public class Utils {
 
             long size = inputChannel.size();
 
-            long count = 0;
+            long count;
             long position = 0;
 
             while (position < size) {

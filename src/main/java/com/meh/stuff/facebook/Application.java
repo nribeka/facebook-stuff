@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.Scanner;
 
+import static com.meh.stuff.facebook.util.Utils.SCREENSHOT_PARENT_DIRECTORY;
+
 public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class.getSimpleName());
 
@@ -38,8 +40,9 @@ public class Application {
                 System.out.print("Do you want to take screenshot of your post? (Y/n)");
                 String takeScreenshot = readAnswer(scanner);
                 feedParameter.setTakeScreenshot(takeScreenshot.equals("Y"));
-                if (takeScreenshot.equals("Y")) {
-                    System.out.println("Your screenshot will be saved under 'screenshot' folder.");
+                if (takeScreenshot.equals("Y") && SCREENSHOT_PARENT_DIRECTORY.mkdirs()) {
+                    System.out.println("Your screenshot will be saved under '" +
+                            SCREENSHOT_PARENT_DIRECTORY.getAbsolutePath() + "' folder.");
                 }
 
                 if (reviewing.equals("n")) {
