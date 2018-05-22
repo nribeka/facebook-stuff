@@ -3,7 +3,7 @@ package com.meh.stuff.facebook.parameter;
 import java.util.Date;
 
 public class FeedParameter {
-    private int keepCount;
+    private int keepCount = -1;
     private Date keepSince;
     private boolean reviewing;
     private boolean autoDelete;

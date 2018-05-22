@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
  * Representation of one facebook feed page. Delete feed method will click on the more option menu,
  * find the delete button and click on it. This page can only be invoked in a single feed page.
  */
-public class FacebookFeedPage {
+public class FeedPage {
 
     private static final String OPTION_BUTTON_ATTRIBUTE_NAME = "data-testid";
     private static final String OPTION_BUTTON_ATTRIBUTE_VALUE = "post_chevron_button";
@@ -25,10 +25,13 @@ public class FacebookFeedPage {
     private Wait<WebDriver> wait;
     private boolean autoDeletePost;
 
-    public FacebookFeedPage(final WebDriver webDriver, final Wait<WebDriver> wait, final boolean autoDeletePost) {
+    public FeedPage(final WebDriver webDriver, final Wait<WebDriver> wait) {
         this.webDriver = webDriver;
         this.wait = wait;
-        this.autoDeletePost = autoDeletePost;
+    }
+
+    public void setAutoDeletePost() {
+        autoDeletePost = true;
     }
 
     private By byOptionButtonSelector() {
@@ -64,6 +67,20 @@ public class FacebookFeedPage {
         // the requirement is to use this selector from the context of the delete post dialog.
         // there's only one button in that dialog, the cancel and edit post is an <a> tag.
         return By.cssSelector("button");
+    }
+
+    private By byContentId() {
+        return By.cssSelector("#content");
+    }
+
+    public boolean feedAvailable() {
+        WebElement contentElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byContentId()));
+        if (contentElement.isDisplayed()) {
+            return !contentElement.getText().contains("This page isn't available")
+                    && !contentElement.getText().contains("The link you followed may be broken")
+                    && !contentElement.getText().contains("or the page may have been removed");
+        }
+        return true;
     }
 
     public boolean performDeleteFeedAction() {
