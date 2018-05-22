@@ -11,13 +11,15 @@ public class Application {
     public static void main(String[] args) {
         try {
             FeedParameter feedParameter = new FeedParameter();
+            feedParameter.setReviewing(true);
+            feedParameter.setAutoDelete(false);
             // Console console = System.console();
             FeedCleaner feedCleaner = new FeedCleaner(feedParameter);
             // char[] password = console.readPassword("%s", "Password: ");
             // feedCleaner.deleteAndBackupFeed("Your-Username", "Your-Password");
             // Arrays.fill(password, ' ');
         } catch (Exception e) {
-            log.error("Unable to delete and backup your account.", e);
+            log.error("Unable to clean your account.", e);
         }
     }
 }

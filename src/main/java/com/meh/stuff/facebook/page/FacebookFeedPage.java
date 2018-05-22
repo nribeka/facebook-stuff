@@ -23,10 +23,12 @@ public class FacebookFeedPage {
 
     private WebDriver webDriver;
     private Wait<WebDriver> wait;
+    private boolean autoDeletePost;
 
-    public FacebookFeedPage(final WebDriver webDriver, final Wait<WebDriver> wait) {
+    public FacebookFeedPage(final WebDriver webDriver, final Wait<WebDriver> wait, final boolean autoDeletePost) {
         this.webDriver = webDriver;
         this.wait = wait;
+        this.autoDeletePost = autoDeletePost;
     }
 
     private By byOptionButtonSelector() {
@@ -53,17 +55,28 @@ public class FacebookFeedPage {
                         "[" + FEED_OPTION_ATTRIBUTE_NAME + "='" + FEED_SAVE_ATTRIBUTE_VALUE + "']");
     }
 
-    public void performDeleteFeedAction() {
+    private By byDeletePostDialog() {
+        // find dialog div inside the uiLayer class
+        return By.cssSelector(".uiLayer div[role='dialog']");
+    }
+
+    private By byDeletePostButtonSelector() {
+        // the requirement is to use this selector from the context of the delete post dialog.
+        // there's only one button in that dialog, the cancel and edit post is an <a> tag.
+        return By.cssSelector("button");
+    }
+
+    public boolean performDeleteFeedAction() {
         Actions action = new Actions(webDriver);
         WebElement optionButton = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(byOptionButtonSelector()));
         action.moveToElement(optionButton);
         optionButton.click();
 
-        WebElement uiContextualLayer = wait.until(
+        WebElement saveButton = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(bySaveButtonSelector()));
 
-        if (uiContextualLayer.isDisplayed()) {
+        if (saveButton.isDisplayed()) {
             WebElement deleteButton = webDriver.findElement(byDeleteButtonSelector());
             if (!deleteButton.isDisplayed()) {
                 // delete button is not displayed, look for the more option
@@ -78,6 +91,24 @@ public class FacebookFeedPage {
             }
             action.moveToElement(deleteButton);
             deleteButton.click();
+
+            boolean optionDismissed = wait.until(
+                    ExpectedConditions.invisibilityOfElementLocated(bySaveButtonSelector()));
+            // wait until the option drop down is dismissed
+            if (optionDismissed) {
+                // wait until the dialog confirmation displayed
+                WebElement deletePostDialog = wait.until(
+                        ExpectedConditions.visibilityOfElementLocated(byDeletePostDialog()));
+                if (deletePostDialog.isDisplayed() && autoDeletePost) {
+                    WebElement deletePostButton = deletePostDialog.findElement(byDeletePostButtonSelector());
+                    action.moveToElement(deletePostButton);
+                    deletePostButton.click();
+                }
+
+                return wait.until(ExpectedConditions.invisibilityOfElementLocated(byDeletePostDialog()));
+            }
         }
+
+        return false;
     }
 }
