@@ -9,9 +9,10 @@ Hit me with an email.
  
 If you already have one, you can put it in the `cleaner.properties` file if
 you're planning to run it from the repo directly. Or create a new
-`cleaner-user.properties` properties file and put it in the same directory as
+`cleaner.properties` properties file and put it in the same directory as
 the `facebook-stuff-xxx-with-dependencies.jar` file. The values from this
-properties file will override the default values in `cleaner.properties` file. 
+properties file will override the default values in `cleaner.properties` file
+from the repo. 
 
 #### Building the project
 The project is just your typical maven project.
