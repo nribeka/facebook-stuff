@@ -4,3 +4,4 @@ target
 *.iml
 
 cleaner-local.properties
+release.properties

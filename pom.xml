@@ -48,6 +48,15 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>cleaner-local.properties</exclude>
+                </excludes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -93,5 +102,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <scm>
+        <url>https://github.com/nribeka/facebook-stuff</url>
+        <connection>scm:git:git@github.com:nribeka/facebook-stuff.git</connection>
+        <developerConnection>scm:git:git@github.com:nribeka/facebook-stuff.git</developerConnection>
+    </scm>
 
 </project>
