@@ -93,6 +93,11 @@ public class FeedCleaner {
                     .fields("id", "created_time", "message", "type")
                     .limit(limit)
                     .offset(offset);
+
+            if (feedParameter.getStartFrom() != null) {
+                reading = reading.since(feedParameter.getStartFrom());
+            }
+
             ResponseList<Post> posts = facebook.getPosts(reading);
             receivedCount = posts.size();
             offset = offset + receivedCount;

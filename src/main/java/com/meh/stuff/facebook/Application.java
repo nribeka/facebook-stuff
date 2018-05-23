@@ -17,6 +17,7 @@ import static com.meh.stuff.facebook.util.Utils.SCREENSHOT_PARENT_DIRECTORY;
 
 public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class.getSimpleName());
+    private static final String CONFIGURATION_FILE_NAME = "cleaner.properties";
 
     public static void main(String[] args) {
         try {
@@ -24,7 +25,7 @@ public class Application {
             properties.load(Application
                     .class
                     .getClassLoader()
-                    .getResourceAsStream("cleaner.properties"));
+                    .getResourceAsStream(CONFIGURATION_FILE_NAME));
 
             InputStream cleanerLocalProperties = Application
                     .class
@@ -34,7 +35,7 @@ public class Application {
                 properties.load(cleanerLocalProperties);
             }
 
-            File userProperties = new File("cleaner-user.properties");
+            File userProperties = new File(CONFIGURATION_FILE_NAME);
             if (userProperties.exists()) {
                 properties.load(new FileInputStream(userProperties));
             }

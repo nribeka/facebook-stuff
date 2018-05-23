@@ -6,8 +6,9 @@ import java.util.Properties;
 
 public class FeedParameter {
     private int keepCount;
-    private Date keepSince;
+    private Date startFrom;
     private boolean reviewing;
+    private Date keepSince;
     private boolean autoDelete;
     private boolean takeScreenshot;
 
@@ -98,6 +99,19 @@ public class FeedParameter {
         if (keepCount != null) {
             setKeepCount(Integer.parseInt(keepCount));
         }
+
+        String startFrom = properties.getProperty("startFrom");
+        if (startFrom != null) {
+            setStartFrom(parseDate(startFrom));
+        }
+    }
+
+    public Date getStartFrom() {
+        return startFrom;
+    }
+
+    public void setStartFrom(Date startFrom) {
+        this.startFrom = startFrom;
     }
 
     private Date parseDate(String stringDate) {
