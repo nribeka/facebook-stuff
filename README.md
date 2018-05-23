@@ -1,5 +1,7 @@
 ## Facebook Cleaner
 
+### Build and Running
+
 #### Prerequisite
 You need to get facebook client secret and client id in order to use this
 application. If you don't have one, I might be able to help you set the values.
@@ -25,7 +27,7 @@ PS: Make sure you have the chromedriver executable inside "chromedriver"
 directory in the same directory with the jar file. 
 
 #### Running the application
-To run the application from the project:
+To run the application from the project after you build it:
 
 ```mvn exec:java```
 
@@ -36,7 +38,7 @@ To run the application from the packaged jar file:
 PS: Make sure you have the chromedriver executable inside "chromedriver"
 directory in the same directory with the jar file.
 
-### Application parameter
+### Parameters
 
 Default parameter of the application will make the application run in
 reviewing mode. All of the parameters are exposed through properties or
