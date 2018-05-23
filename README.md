@@ -70,7 +70,7 @@ through the interactive mode.
   posts. The first X will be running in review mode, the rest will run in delete
   mode.
 
-* _keep.since_ (dd/mm/yyy, e.g. 01/01/2018)
+* _keep.since_ (dd/mm/yyyy, e.g. 01/01/2018)
 
   Last posted date of the public posts that will be skipped by the delete mode.
 
@@ -87,6 +87,12 @@ through the interactive mode.
 * _skipInteractive_ (true | false)
 
   Flag to skip the interactive mode and use values from the properties file.
+  
+* _startFrom_ (dd/mm/yyyy, e.g. 01/01/2018)
+
+  Earliest date of the first post to pull from facebook. For example, if you
+  set this date to 01/01/2017, the application will pull posts from that date
+  going back all the way to your first post. 
 
 * _app.clientId_
   
