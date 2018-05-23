@@ -95,6 +95,7 @@ public class FeedCleaner {
                     .offset(offset);
 
             if (feedParameter.getStartFrom() != null) {
+                // TODO: this one doesn't seems to be working even on their graph explorer it is not working.
                 reading = reading.since(feedParameter.getStartFrom());
             }
 

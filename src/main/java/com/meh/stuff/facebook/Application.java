@@ -111,9 +111,23 @@ public class Application {
                 }
             }
 
-            log.info("Parameter -> keep count: {}, keep since: {}, reviewing: {}, auto delete: {}.",
-                    feedParameter.getKeepCount(), feedParameter.getKeepSince(), feedParameter.isReviewing(),
-                    feedParameter.isAutoDelete());
+            if (feedParameter.getKeepCount() == -1 && feedParameter.getKeepSince() == null) {
+                log.info("Parameter keepSince and keepCount is not set. Running in reviewing mode.");
+            }
+
+            log.info("Skip interactive: {}.", properties.getProperty("skipInteractive"));
+
+            log.info("Delay between opening post: {}.", feedParameter.isDelayBetweenPost());
+            log.info("Amount of delay between post: {}s.", feedParameter.getDelayBetweenPostInSecond());
+
+            log.info("I'm just here reviewing my old posts: {}.", feedParameter.isReviewing());
+            log.info("Take screenshot of my old posts: {}.", feedParameter.isTakeScreenshot());
+
+            if (!feedParameter.isReviewing()) {
+                log.info("Number of post to skip before start deleting: {}.", feedParameter.getKeepCount());
+                log.info("Oldest date of post to skip before start deleting: {}.", feedParameter.getKeepSince());
+                log.info("Automate post deletion process: {}.", feedParameter.isAutoDelete());
+            }
 
             FeedCleaner feedCleaner = new FeedCleaner(appParameter, feedParameter);
             feedCleaner.clean("Enter your username", null);
