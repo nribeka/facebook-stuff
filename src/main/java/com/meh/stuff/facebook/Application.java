@@ -57,11 +57,11 @@ public class Application {
                 Scanner scanner = new Scanner(System.in).useDelimiter("\\s");
                 System.out.println("Entering interactive mode ...");
 
-                System.out.print("Do you just want to go through your post? (Y/n): ");
+                System.out.print("Do you want to delete your facebook posts? (Y/n): ");
                 String reviewing = readAnswer(scanner);
-                feedParameter.setReviewing(reviewing.equals("Y"));
+                feedParameter.setReviewing(reviewing.equals("n"));
 
-                System.out.print("Do you want to take screenshot of your post? (Y/n)");
+                System.out.print("Do you want to take screenshot of the post? (Y/n): ");
                 String takeScreenshot = readAnswer(scanner);
                 feedParameter.setTakeScreenshot(takeScreenshot.equals("Y"));
                 if (takeScreenshot.equals("Y") && SCREENSHOT_PARENT_DIRECTORY.mkdirs()) {
