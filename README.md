@@ -1,5 +1,10 @@
 ## Facebook Cleaner
 
+### Update 07/27/2018
+I just found out that facebook changed their permission model again. They block the backdoor of redirecting to their GraphQL tester to generate the oauth token.
+
+Need to find a new way to do this :)
+
 ### Build and Running
 
 #### Prerequisite
