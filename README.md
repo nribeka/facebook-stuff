@@ -1,7 +1,7 @@
 ## Facebook Cleaner
 
 ### Update 02/08/2019
-They fixed the vulnerabilities in the graph explorer. Now you can't other people access token to access all of the posts. Need to find other way to get list of all posts.
+They fixed the vulnerabilities in the graph explorer. Now you can't use other people access token to user's posts. Need to find other way to get list of all posts.
 
 ### Update 07/27/2018
 I just found out that facebook changed their permission model again. They block the backdoor of redirecting to their GraphQL tester to generate the oauth token.
